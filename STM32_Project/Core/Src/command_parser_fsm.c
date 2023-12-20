@@ -53,7 +53,7 @@ void uart_communication_fsm() {
 				ADC_value = HAL_ADC_GetValue(&hadc1);
 				HAL_ADC_Stop(&hadc1);
 
-				sprintf((char *)str, "%s%u%s", "!ADC=", (long int)ADC_value, "#\r\n");
+				sprintf((char *)str, "%s%ld%s", "!ADC=", (long int)ADC_value, "#\r\n");
 				HAL_UART_Transmit(&huart2, (void*)str, sizeof(str), 50);
 
 				clearBuffer();

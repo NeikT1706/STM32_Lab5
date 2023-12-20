@@ -4,6 +4,8 @@
  *  Created on: Dec 8, 2023
  *      Author: Admin
  */
+#ifndef SRC_GLOBAL_C_
+#define SRC_GLOBAL_C_
 
 #include"global.h"
 
@@ -15,6 +17,5 @@ int commandCheck(char *str) {
 	else if (str[0] == 'O' && str[1] == 'K' && str[2] == '#')
 		return 2;
 	else return 0;
-
 }
-
+#endif /* SRC_GLOBAL_C_ */

@@ -63,7 +63,7 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void HAL_UART_RxCpltCallback ( UART_HandleTypeDef * huart ) {
+void HAL_UART_RxCpltCallback ( UART_HandleTypeDef *huart) {
 	if(huart->Instance == USART2) {
 		HAL_UART_Transmit(&huart2, &temp, 1, 50);
 		buffer[index_buffer++] = temp;
@@ -120,7 +120,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
   HAL_UART_Receive_IT(&huart2, &temp, 1);
-  SCH_Add_Task(toggleLed, 0, 200);
+  SCH_Add_Task(toggleLed, 0, 100);
   SCH_Add_Task(command_parser, 100, 1);
   SCH_Add_Task(uart_communication_fsm, 200, 1);
   /* USER CODE END 2 */
@@ -244,7 +244,7 @@ static void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 7999;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 65535;
+  htim2.Init.Period = 9;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
